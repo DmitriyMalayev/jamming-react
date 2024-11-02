@@ -2,11 +2,11 @@ import React from 'react'
 import styles from "../modules/SearchResults.module.css"
 import TrackList from './TrackList';
 
-function SearchResults({ userSearchResults }) {
-    console.log(userSearchResults)
+function SearchResults({ searchResults, onAdd }) {
+    console.log(searchResults)
     return (
         <div className={styles.SearchResults}>
-            <TrackList userTracks={userSearchResults} />
+            <TrackList searchResults={searchResults} isRemoval={false} onAdd={onAdd} />
         </div>
     );
 }

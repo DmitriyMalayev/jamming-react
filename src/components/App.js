@@ -3,6 +3,7 @@ import SearchBar from "./SearchBar";
 import SearchResults from "./SearchResults";
 import Playlist from "./Playlist";
 import styles from "../modules/App.module.css"
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
   const [searchResults, setSearchResults] = useState([
@@ -47,18 +48,34 @@ function App() {
   ])
   const [playlistName, setPlaylistName] = useState("Playlist Name")
 
+  const addTrack = (track) => {
+    if (!playlistTracks.find((t) => t.id === track.id)) {
+      setPlaylistTracks([
+        ...playlistTracks, {
+          id: uuidv4(),
+          name: track.name,
+          artist: track.artist,
+          album: track.album
+        }
+      ])
+    }
+  }
+  const removeTrack = (track) => {
+    setPlaylistTracks(playlistTracks.filter((t) => t.id !== track.id))
+  }
 
-
+  const savePlaylist = () => {
+    
+  }
   return (
     <div>
       <h1>
         Let's Jam
       </h1>
       <div className={styles.App}>
-        <SearchBar>
-        </SearchBar>
+        <SearchBar />
         <div className={styles.AppPlaylist}>
-          <SearchResults userSearchResults={searchResults} />
+          <SearchResults searchResults={searchResults} onAdd={addTrack} />
           <Playlist playlistName={playlistName} playlistTracks={playlistTracks} />
         </div>
       </div>
