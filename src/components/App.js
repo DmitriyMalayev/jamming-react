@@ -62,19 +62,21 @@ function App() {
   };
 
   const search = (term) => {
-    Spotify.search(term)
-      .then((results) => setSearchResults(results))
-      .catch((error) => console.error("Error searching Spotify:", error));
+    console.log(term);
+    // Spotify.search(term)
+    //   .then((results) => setSearchResults(results))
+    //   .catch((error) => console.error("Error searching Spotify:", error));
   };
 
   const savePlaylist = () => {
     const trackURIs = playlistTracks.map((t) => t.uri);
-    Spotify.savePlaylist(playlistName, trackURIs)
-      .then(() => {
-        setPlaylistName("New Playlist");
-        setPlaylistTracks([]);
-      })
-      .catch((error) => console.error("Error saving playlist:", error));
+    console.log(trackURIs);
+    // Spotify.savePlaylist(playlistName, trackURIs)
+    //   .then(() => {
+    //     setPlaylistName("New Playlist");
+    //     setPlaylistTracks([]);
+    //   })
+    //   .catch((error) => console.error("Error saving playlist:", error));
   };
 
   return (

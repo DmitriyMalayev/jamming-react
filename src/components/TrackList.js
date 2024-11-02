@@ -1,16 +1,22 @@
-import React from 'react'
-import styles from "../modules/Tracklist.module.css"
+import React from "react";
+import styles from "../modules/Tracklist.module.css";
 import Track from "./Track";
 
-function Tracklist({ searchResults, playlistTracks, playlistName, isRemoval, onAdd }) {
-  console.log(playlistName && playlistTracks)
-  console.log(playlistName)
+function TrackList({ tracks, isRemoval, onAdd, onRemove }) {
   return (
     <div className={styles.Tracklist}>
-      {searchResults && searchResults.map((track) => (
-        <Track key={track.id} track={track} isRemoval={isRemoval} onAdd={onAdd} />
-      ))}
+      {tracks &&
+        tracks.map((track) => (
+          <Track
+            key={track.id}
+            track={track}
+            isRemoval={isRemoval}
+            onAdd={onAdd}
+            onRemove={onRemove}
+          />
+        ))}
     </div>
-  )
+  );
 }
-export default Tracklist;
+
+export default TrackList;

@@ -1,14 +1,14 @@
-import React from 'react'
-import styles from "../modules/SearchResults.module.css"
-import TrackList from './TrackList';
+import React from "react";
+import styles from "../modules/SearchResults.module.css";
+import TrackList from "./TrackList";
 
 function SearchResults({ searchResults, onAdd }) {
-    console.log(searchResults)
-    return (
-        <div className={styles.SearchResults}>
-            <TrackList searchResults={searchResults} isRemoval={false} onAdd={onAdd} />
-        </div>
-    );
+  return (
+    <div className={styles.SearchResults}>
+      <h2>Results</h2>
+      <TrackList tracks={searchResults} isRemoval={false} onAdd={onAdd} />
+    </div>
+  );
 }
 
 export default SearchResults;
