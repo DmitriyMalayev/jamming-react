@@ -1,13 +1,14 @@
-import React from 'react'
-import styles from "../modules/Track.module.css"
+import React from 'react';
+import styles from "../modules/Track.module.css";
 
-
-function Track({ track }) {
-    // const renderAction = () => {
-    //     return (
-    //         <button className={styles.TrackAction}>{props.isRemoval ? "-" : "+"}</button>
-    //     )
-    // }
+function Track({ track, isRemoval, onAdd, onRemove }) {
+    const handleAction = () => {
+        if (isRemoval) {
+            onRemove(track);
+        } else {
+            onAdd(track);
+        }
+    };
 
     return (
         <div className={styles.Track}>
@@ -15,7 +16,9 @@ function Track({ track }) {
                 <h3>{track.name}</h3>
                 <p>{track.artist} | {track.album}</p>
             </div>
-            <button className={styles.TrackAction}></button>
+            <button onClick={handleAction} className={styles.TrackAction}>
+                {isRemoval ? '-' : '+'}
+            </button>
         </div>
     );
 }

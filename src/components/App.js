@@ -49,34 +49,46 @@ function App() {
   const [playlistName, setPlaylistName] = useState("Playlist Name")
 
   const addTrack = (track) => {
-    if (!playlistTracks.find((t) => t.id === track.id)) {
-      setPlaylistTracks([
-        ...playlistTracks, {
-          id: uuidv4(),
-          name: track.name,
-          artist: track.artist,
-          album: track.album
-        }
-      ])
+    if (!playlistTracks.some((t) => t.id === track.id)) {
+      setPlaylistTracks([...playlistTracks, { ...track, id: uuidv4() }]);
     }
-  }
+  };
   const removeTrack = (track) => {
     setPlaylistTracks(playlistTracks.filter((t) => t.id !== track.id))
   }
 
-  const savePlaylist = () => {
-    
+  const updatePlaylistName = (name) => {
+    setPlaylistName(name);
   }
+
+  const search = (term) => {
+    Spotify.search(term)
+      .then((results) => setSearchResults(results))
+      .catch((error) => console.error("Error searching Spotify:", error));
+  };
+
+  const savePlaylist = () => {
+    const trackURIs = playlistTracks.map((t) => t.uri);
+    Spotify.savePlaylist(playlistName, trackURIs)
+      .then(() => {
+        setPlaylistName("New Playlist");
+        setPlaylistTracks([]);
+      })
+      .catch((error) => console.error("Error saving playlist:",
+        error));
+  };
+
+
   return (
     <div>
       <h1>
         Let's Jam
       </h1>
       <div className={styles.App}>
-        <SearchBar />
+        <SearchBar onSearch={search} />
         <div className={styles.AppPlaylist}>
           <SearchResults searchResults={searchResults} onAdd={addTrack} />
-          <Playlist playlistName={playlistName} playlistTracks={playlistTracks} />
+          <Playlist playlistName={playlistName} playlistTracks={playlistTracks} onRemove={removeTrack} onNameChange={updatePlaylistName} onSave={savePlaylist} />
         </div>
       </div>
     </div>
