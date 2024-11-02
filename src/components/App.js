@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import SearchBar from "./SearchBar";
 import SearchResults from "./SearchResults";
 import Playlist from "./Playlist";
-import styles from "../modules/App.module.css"
-import { v4 as uuidv4 } from 'uuid';
+import styles from "../modules/App.module.css";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const [searchResults, setSearchResults] = useState([
@@ -25,7 +25,7 @@ function App() {
       artist: "track artist 3",
       album: " track album 3",
     },
-  ])
+  ]);
   const [playlistTracks, setPlaylistTracks] = useState([
     {
       id: 1,
@@ -45,8 +45,8 @@ function App() {
       artist: "example playlist artist 3",
       album: " example playlist album 3",
     },
-  ])
-  const [playlistName, setPlaylistName] = useState("Playlist Name")
+  ]);
+  const [playlistName, setPlaylistName] = useState("Playlist Name");
 
   const addTrack = (track) => {
     if (!playlistTracks.some((t) => t.id === track.id)) {
@@ -54,12 +54,12 @@ function App() {
     }
   };
   const removeTrack = (track) => {
-    setPlaylistTracks(playlistTracks.filter((t) => t.id !== track.id))
-  }
+    setPlaylistTracks(playlistTracks.filter((t) => t.id !== track.id));
+  };
 
   const updatePlaylistName = (name) => {
     setPlaylistName(name);
-  }
+  };
 
   const search = (term) => {
     Spotify.search(term)
@@ -74,21 +74,23 @@ function App() {
         setPlaylistName("New Playlist");
         setPlaylistTracks([]);
       })
-      .catch((error) => console.error("Error saving playlist:",
-        error));
+      .catch((error) => console.error("Error saving playlist:", error));
   };
-
 
   return (
     <div>
-      <h1>
-        Let's Jam
-      </h1>
+      <h1>Let's Jam</h1>
       <div className={styles.App}>
         <SearchBar onSearch={search} />
         <div className={styles.AppPlaylist}>
           <SearchResults searchResults={searchResults} onAdd={addTrack} />
-          <Playlist playlistName={playlistName} playlistTracks={playlistTracks} onRemove={removeTrack} onNameChange={updatePlaylistName} onSave={savePlaylist} />
+          <Playlist
+            playlistName={playlistName}
+            playlistTracks={playlistTracks}
+            onRemove={removeTrack}
+            onNameChange={updatePlaylistName}
+            onSave={savePlaylist}
+          />
         </div>
       </div>
     </div>
