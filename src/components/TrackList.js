@@ -3,7 +3,7 @@ import styles from "../modules/Tracklist.module.css"
 
 function Tracklist() {
   return (
-    <div className="trackList">
+    <div className={styles.Tracklist}>
       {/* render track components via map */}
     </div>
   );
