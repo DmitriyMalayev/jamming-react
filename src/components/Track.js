@@ -2,12 +2,18 @@ import React from 'react'
 import styles from "../modules/Track.module.css"
 
 
-function Track() {
+function Track({ track }) {
+    // const renderAction = () => {
+    //     return (
+    //         <button className={styles.TrackAction}>{props.isRemoval ? "-" : "+"}</button>
+    //     )
+    // }
+
     return (
         <div className={styles.Track}>
             <div className={styles.TrackInfo}>
-                <h3>Track Name</h3>
-                <p>Track Artist Track Album</p>
+                <h3>{track.name}</h3>
+                <p>{track.artist} | {track.album}</p>
             </div>
             <button className={styles.TrackAction}></button>
         </div>
