@@ -2,10 +2,12 @@ import React from "react";
 import styles from "../modules/Track.module.css";
 
 function Track({ track, isRemoval, onAdd, onRemove }) {
+  
+
   const handleAction = () => {
-    if (isRemoval) {
+    if (isRemoval && typeof onRemove === "function") {
       onRemove(track);
-    } else {
+    } else if (!isRemoval && typeof onAdd === "function") {
       onAdd(track);
     }
   };
