@@ -1,10 +1,12 @@
 import React from 'react'
-import "../modules/Tracklist.module.css"
+import styles from "../modules/Tracklist.module.css"
 
-const TrackList = () => {
+function Tracklist() {
   return (
-    <div>TrackList</div>
-  )
+    <div className="trackList">
+      {/* render track components via map */}
+    </div>
+  );
 }
 
-export default TrackList
+export default Tracklist;

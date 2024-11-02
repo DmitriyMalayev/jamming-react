@@ -1,10 +1,13 @@
 import React from 'react'
-import "../modules/SearchResults.module.css"
+import styles from "../modules/SearchResults.module.css"
+import TrackList from './TrackList';
 
-const SearchResults = () => {
+function SearchResults() {
     return (
-        <div>SearchResults</div>
-    )
+        <div className={styles.SearchResults}>
+            <TrackList></TrackList>
+        </div>
+    );
 }
 
-export default SearchResults
+export default SearchResults;

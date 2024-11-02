@@ -1,10 +1,17 @@
 import React from 'react'
-import "../modules/Playlist.module.css"
+import styles from "../modules/Playlist.module.css"
+import TrackList from './TrackList';
 
-const Playlist = () => {
+function Playlist() {
     return (
-        <div>Playlist</div>
-    )
+        <div className={styles.Playlist}>
+            <input defaultValue={"New Playlist"} />
+            <TrackList></TrackList>
+            <button className={styles.PlaylistSave}>
+                SAVE TO SPOTIFY
+            </button>
+        </div>
+    );
 }
 
-export default Playlist
+export default Playlist;

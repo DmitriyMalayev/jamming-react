@@ -1,10 +1,17 @@
 import React from 'react'
-import "../modules/Track.module.css"
+import styles from "../modules/Track.module.css"
 
-const Track = () => {
+
+function Track() {
     return (
-        <div>Track</div>
-    )
+        <div className={styles.Track}>
+            <div className={styles.TrackInfo}>
+                <h3>Track Name</h3>
+                <p>Track Artist Track Album</p>
+            </div>
+            <button className={styles.TrackAction}></button>
+        </div>
+    );
 }
 
-export default Track
+export default Track;
