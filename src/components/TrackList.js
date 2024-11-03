@@ -1,21 +1,23 @@
 import React from "react";
-import styles from "../modules/TrackList.module.css";
 import Track from "./Track";
+import styles from "../modules/SearchResults.module.css";
 
-function TrackList({ tracks, isRemoval, onAdd, onRemove }) {
+const TrackList = ({ tracks, onAdd, onRemove, isRemoval }) => {
   return (
     <div className={styles.TrackList}>
-      {tracks.map((track) => (
-        <Track
-          key={track.id}
-          track={track}
-          onAdd={onAdd}
-          onRemove={onRemove}
-          isRemoval={isRemoval}
-        />
-      ))}
+      {tracks.map((track) => {
+        return (
+          <Track
+            track={track}
+            key={track.id}
+            onAdd={onAdd}
+            isRemoval={isRemoval}
+            onRemove={onRemove}
+          />
+        );
+      })}
     </div>
   );
-}
+};
 
 export default TrackList;

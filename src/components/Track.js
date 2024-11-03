@@ -1,15 +1,34 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styles from "../modules/Track.module.css";
 
-function Track({ track, isRemoval, onAdd, onRemove }) {
-  
-
-  const handleAction = () => {
-    if (isRemoval && typeof onRemove === "function") {
-      onRemove(track);
-    } else if (!isRemoval && typeof onAdd === "function") {
+const Track = ({ onAdd, onRemove, isRemoval, track }) => {
+  const addTrack = useCallback(
+    (event) => {
       onAdd(track);
+    },
+    [onAdd, track]
+  );
+
+  const removeTrack = useCallback(
+    (event) => {
+      onRemove(track);
+    },
+    [onRemove, track]
+  );
+
+  const renderAction = () => {
+    if (isRemoval) {
+      return (
+        <button className={styles.TrackAction} onClick={removeTrack}>
+          -
+        </button>
+      );
     }
+    return (
+      <button className={styles.TrackAction} onClick={addTrack}>
+        +
+      </button>
+    );
   };
 
   return (
@@ -20,11 +39,9 @@ function Track({ track, isRemoval, onAdd, onRemove }) {
           {track.artist} | {track.album}
         </p>
       </div>
-      <button onClick={handleAction} className={styles.TrackAction}>
-        {isRemoval ? "-" : "+"}
-      </button>
+      {renderAction()}
     </div>
   );
-}
+};
 
 export default Track;

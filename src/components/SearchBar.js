@@ -4,7 +4,7 @@ import styles from "../modules/SearchBar.module.css";
 function SearchBar({ onSearch }) {
   const [term, setTerm] = useState("");
 
-  const handleSearch = () => {
+  const passTerm = () => {
     onSearch(term);
   };
 
@@ -18,7 +18,7 @@ function SearchBar({ onSearch }) {
         value={term}
         onChange={handleTermChange}
       />
-      <button className={styles.SearchButton} onClick={handleSearch}>
+      <button className={styles.SearchButton} onClick={passTerm}>
         SEARCH
       </button>
     </div>
